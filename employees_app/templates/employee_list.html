@@ -11,7 +11,7 @@
     <h2>Aufgaben:</h2>
     <ol>
       <li>Zeige hier im Template eine Liste aller Mitarbeiter, ihrer Abteilung und ihres Gehalts an.</li>
-      <li>Zeige eine Liste der Namen aller Mitarbeiter, die mehr als 3000 € im Monat verdienen.</li>
+      <li>Zeige eine Liste der Namen aller Mitarbeiter, die mehr als 3000 € im Monat verdienen:</li>
       <li>Wie hoch ist die Anzahl der Mitarbeiter, die 5000 € im Monat oder mehr verdienen?</li>
     </ol>
     <h3>Zusatzaufgaben:</h3>
@@ -22,6 +22,36 @@
 
     <h2 style="color:red">Antworten:</h2>
 
+    <h3>1. Alle Mitarbeiter:</h3>
+
+    <ul>
+      {% for employee in employees %}
+        <li>
+          <strong>{{ employee.name }}:</strong>
+          Abteilung: {{ employee.department }} - Gehalt: {{ employee.salary }} €
+        </li>
+      {% endfor %}
+    </ul>
+
+    <h3>2. Mitarbeiter, die mehr als 3000€ verdienen:</h3>
+    <ul>
+      {% for employee in high_salary_employees %}
+        <li>{{ employee.name }}</li>
+      {% endfor %}
+    </ul>
+    <h3>3. Mitarbeiter mit mindestens 5000 € Gehalt:</h3>
+    <p>Anzahl: {{ high_earners_count }}</p>
+    <h3>4. Durchschnittsgehalt im Sales-Team:</h3>
+    <p>Durchschnittsgehalt: {{ sales_avg.avg_salary|floatformat:2 }} €</p>
+    <h3>5. Mitarbeiter vor dem 01.01.2022, außer HR:</h3>
+
+    <ul>
+      {% for employee in filtered_employees %}
+        <li>{{ employee.name }} - 
+          Eingestellt am: {{ employee.hire_date|date:'d.m.Y' }} - 
+          Abteilung: {{ employee.department }}</li>
+      {% endfor %}
+    </ul>
     <!-- Hier eure Antworten rendern -->
   </body>
 </html>
